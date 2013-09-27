@@ -1,6 +1,6 @@
 Yamon::Application.routes.draw do
 
-  match '/current_alerts/delete_3h'  => 'current_alerts#delete_3h'
+  get '/current_alerts/delete_3h'  => 'current_alerts#delete_3h'
 
   resources :home
   resources :hosttags
@@ -13,15 +13,15 @@ Yamon::Application.routes.draw do
   resources :alerts
   resources :current_alerts
 
-  match 'login/:action(/:id)' => 'login#index'
-  match 'dispo_stats(/:dateFrom(/:dateTo))' => 'dispo_stats#index'
-  match '/' => 'alerts#index'
-  match '/alerts/link_to_report' => 'alerts#link_to_report'
-  match '/reports/untag' => 'reports#untag'
-  match '/reports/tag' => 'reports#tag'
-  match '/services/tag' => 'services#tag'
-  match '/services/untag' => 'services#untag'
-  match '/hosts/tag' => 'hosts#tag'
-  match '/hosts/untag' => 'hosts#untag'
+  match 'login/:action(/:id)' => 'login#index', via: [:get, :post]
+  get 'dispo_stats(/:dateFrom(/:dateTo))' => 'dispo_stats#index'
+  get '/' => 'alerts#index'
+  get '/alerts/link_to_report' => 'alerts#link_to_report'
+  get '/reports/untag' => 'reports#untag'
+  get '/reports/tag' => 'reports#tag'
+  get '/services/tag' => 'services#tag'
+  get '/services/untag' => 'services#untag'
+  get '/hosts/tag' => 'hosts#tag'
+  get '/hosts/untag' => 'hosts#untag'
 
 end

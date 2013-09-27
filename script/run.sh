@@ -3,8 +3,6 @@
 APP_DIR=/data/www/yamon
 ENV=$1
 
-source /home/yamon/.rvm/scripts/rvm
-
 if [ "x$ENV" == "x" ]
 then
   ENV=production
@@ -21,9 +19,6 @@ test -d $APP_DIR/tmp/pids || mkdir $APP_DIR/tmp/pids
 
 cd $APP_DIR
 $APP_DIR/script/rails server -b 127.0.0.1 -d -p $PORT -e $ENV
-
-#marche pas :(
-#echo $! > $APP_DIR/tmp/pids/production.pid
 
 PID=`ps aux|grep -e "ruby.*$PORT"|grep -v -e "grep" -e "run.sh"|tail -n1|awk '{print $2}'`
 echo " * PID is [$PID]"
