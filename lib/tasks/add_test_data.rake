@@ -24,7 +24,7 @@ namespace :db do
     puts "Add service #{h} ..."
     s=Service.new()
     s.host_id = h
-    s.name = serviceNameList.rand
+    s.name = serviceNameList.sample
     s.save
 
     printf "Add alerts for #{h} ..."
