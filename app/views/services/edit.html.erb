@@ -1,0 +1,46 @@
+<h1><%=t '.title' %>: <%= @service.name  %></h1>
+
+<%= form_for(@service) do |f| %>
+
+  <label><%=t 'services.notification_delay' %>:</label>
+  <%= f.text_field :notification_delay, :size => 3 %> min.<br />
+  <p>
+    <%= f.submit t('generic.update') %>
+  </p>
+<% end %>
+
+<h2><%=t 'services.tag' %></h2>
+
+<%= form_tag '/services/tag',:method=>:post do %>
+  <%= hidden_field_tag :service_id, @service.id %>
+  <label></label>
+  <%= select_tag "servicetag_id", options_from_collection_for_select(Servicetag.all, :id, :name) %>
+  <%= submit_tag t('generic.add') %>
+<% end %>
+
+<table>
+  <tr>
+    <th><%=t 'services.name' %></th>
+  </tr>
+  <% @service.servicetags.each { |servicetag| %>
+  <tr>
+    <td>
+      <a href="<%= url_for(:controller=>"servicetags", :action=>"show",:id=>servicetag.id) %>">
+        <%=h servicetag.name %>
+      </a>
+    </td>
+    <td>
+      <%= form_tag '/services/untag',:method=>:post do %>
+      <%= hidden_field_tag :service_id, @service.id %>
+      <%= hidden_field_tag :servicetag_id, servicetag.id %>
+      <%= submit_tag t('generic.remove') %>
+    <% end %>
+    </td>
+  </tr>
+  <%}%>
+</table>
+
+<hr />
+
+<%= link_to t('generic.show'), @service %> |
+<%= link_to t('generic.back'), services_path %>

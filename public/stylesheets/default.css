@@ -1,0 +1,128 @@
+body {
+	background-color:#ffffff;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+h1 {
+font-family: Verdana,Arial,Helvetica,sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: bold;
+color: #006600;
+}
+
+h2{
+font-family: Verdana,Arial,Helvetica,sans-serif;
+font-size: 11px;
+font-style: normal;
+font-weight: bold;
+color: #bb0000;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+table {
+	background-color:#FFF0F0;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
+	border-collapse: collapse;
+	border: 1px solid gray;
+}
+th { border: 1px solid grey; background-color:#FFD2D2}
+td { border: 1px solid grey; padding:3px; }
+tr.bg0 {background-color: white; }
+tr.bg1 {background-color: #F7F8E0; }
+tr:hover {background-color: #e1eafe; }
+td.durationWarning { font-weight: bold; color: #f3b000 }
+td.durationCritical { font-weight: bold; color: #ff3200 }
+td.durationDeath { font-weight: bold; color: #8b0000 }
+img { border:none; }
+
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+.PlannedAndExcluded {
+  background-color: #ccffcc;
+}
+
+.limitAlert {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+.default-form fieldset {
+  background: #efe;
+}
+
+.default-form legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.default-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+.default-form .submit {
+  margin-left: 5.5em;
+}
+

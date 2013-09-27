@@ -1,0 +1,19 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+  <% for column in Service.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  <tr>
+  <% for column in Service.content_columns %>
+    <td><%=h @service.send(column.name) %></td>
+  <% end %>
+  </tr>
+</table>
+
+<hr />
+
+<%= link_to t('generic.edit'), edit_service_path(@service) %> |
+<%= link_to t('generic.back'), services_path %>

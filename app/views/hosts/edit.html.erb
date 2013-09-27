@@ -1,0 +1,49 @@
+<h1><%=t '.title'%></h1>
+
+<%= form_for(@host) do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <label><%=t '.notification_delay' %>:</label>
+  <%= f.text_field :notification_delay, :size => 3 %> min.<br />
+  <p>
+    <%= f.submit t('generic.update') %>
+  </p>
+<% end %>
+
+<h2><%=t '.title_tag' %></h2>
+
+<%= form_tag '/hosts/tag',:method=>:post do %>
+  <%= hidden_field_tag :host_id, @host.id %>
+  <label><%=t '.form_add' %></label>
+  <%= select_tag "hosttag_id", options_from_collection_for_select(Hosttag.all, :id, :name) %>
+  <%= submit_tag t('generic.add') %>
+<% end %>
+
+<table>
+  <tr>
+    <th><%=t '.name'%></th>
+  </tr>
+  <% @host.hosttags.each { |hosttag| %>
+  <tr>
+    <td>
+      <a href="<%= url_for(:controller=>"hosttags", :action=>"show",:id=>hosttag.id) %>">
+        <%=h hosttag.name %>
+      </a>
+    </td>
+    <td>
+      <%= form_tag '/hosts/untag',:method=>:post do %>
+      <%= hidden_field_tag :host_id, @host.id %>
+      <%= hidden_field_tag :hosttag_id, hosttag.id %>
+      <%= submit_tag t('generic.remove') %>
+    <% end %>
+    </td>
+  </tr>
+  <%}%>
+</table>
+
+<hr />
+
+<%= link_to t('generic.show'), @host %> |
+<%= link_to t('generic.back'), hosts_path %>

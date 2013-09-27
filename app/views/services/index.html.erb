@@ -1,0 +1,24 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+    <th><%=t '.id' %></th>
+    <th><%=t '.host' %></th>
+    <th><%=t '.name' %></th>
+    <th><%=t '.notification_delay' %></th>
+    <th><%=t '.tag' %></th>
+  <% if logged? %>
+    <th><%=t '.add_tags' %></th>
+    <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+  <% @services.each do |service| %>
+    <%= render partial: "service", locals: {service: service} %>
+  <% end %>
+
+</table>
+
+<br />
+
+<%= link_to t('.new'), new_service_path if logged? %>

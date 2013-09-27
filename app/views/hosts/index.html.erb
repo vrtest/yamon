@@ -1,0 +1,40 @@
+<h1><%=t '.title'%></h1>
+
+<table>
+  <tr>
+    <th><%=t '.name'%></th>
+    <th><%=t '.tag'%></th>
+    <th><%=t '.notification_delay' %></th>
+  <% if logged? %>
+    <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+<% @hosts.each do |host|
+
+  #get the host class element
+  hostClasses=""
+  host.hosttags.each { |hosttag|
+    hostClasses=hosttag.css_classes+' '+hostClasses unless hosttag.css_classes.nil?
+  } unless host.nil?
+  %>
+  <tr>
+    <td><%=h host.name %></td>
+    <td><%=h host.notification_delay%></td>
+    <td>
+    <% host.hosttags.each { |hosttag| %>
+        <a class="<%= hostClasses %>" href="<%= url_for(:controller=>"hosttags", :action=>"show",:id=>hosttag.id) %>">
+          <%=h hosttag.name %>
+        </a>
+    <%}%>
+    </td>
+  <% if logged? %>
+    <td><%= link_to t('generic.show'), host %></td>
+    <td><%= link_to t('generic.edit'), edit_host_path(host) %></td>
+    <td><%= link_to t('generic.destroy'), host, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% SALT = "UtPirHabs8" unless defined?(SALT) %>
+
+vincent:
+  id: 1
+  name: vincent
+  salt: <%= SALT %>
+  hashed_password: <%= User.encrypted_password('secret', SALT) %>
+  

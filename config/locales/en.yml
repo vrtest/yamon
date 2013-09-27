@@ -1,0 +1,29 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+
+  menu:
+    home: "Home"
+    alerts: "alerts"
+    hosts: "hosts"
+    services: "services"
+    reports: "reports"
+    hosttags: "host-tags"
+    reporttags: "report-tags"
+    servicetags: "service-tags"
+    dispo_stats: "dispo-stats"
+    login: "login"
+    logout: "logout"
+
+  generic:
+    update: "Update"
+    create: "Create"
+    edit: "Edit"
+    back: "Back"
+    show: "Show"
+    destroy: "Destroy"
+    destroy_confirm: "Are you sure?"
+    add: "Add"
+    remove: "remove"

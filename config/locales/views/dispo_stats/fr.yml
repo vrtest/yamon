@@ -1,0 +1,19 @@
+en:
+  dispo_stats:
+    index:
+      title: "Statistiques de disponibilité"
+      service_id: "service id"
+      host_name: "nom de l'hôte"
+      service_name: "nom du service"
+      service_ok: "ok total"
+      service_warn_sum: "warn total"
+      service_unknow_sum: "unknow total"
+      service_error_sum: "erreur total"
+      service_error_sum_exclude: "erreur consolidée"
+      service_disponibility: "Disponibilité"
+      service_ok_help: "Temps total - temps alertes critiques consolidés - temps unknow - temps warning (= temps &lt; 5 secondes)"
+      service_warn_sum_help: "Temps alertes Warn"
+      service_unknow_sum_help: "Temps alertes Unk"
+      service_error_sum: "Temps alertes critiques"
+      service_error_sum_exclude_help: "Temps alertes critiques - les alertes critiques exclu via tag"
+      service_disponibility_help: "Temps total - temps alertes critiques exclu via tag"

@@ -1,0 +1,23 @@
+<h1><%=t '.title'%></h1>
+
+<%= form_for(@hosttag) do |f| %>
+
+  <p>
+    <%= f.label t('hosttags.name') %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label t('hosttags.description') %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label t('hosttags.css_classes') %><br />
+    <%= f.text_field :css_classes %>
+  </p>
+  <p>
+    <%= f.submit t('generic.update') %>
+  </p>
+<% end %>
+
+<%= link_to t('generic.show'), @hosttag %> |
+<%= link_to t('generic.back'), hosttags_path %>

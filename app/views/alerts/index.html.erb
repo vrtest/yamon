@@ -1,0 +1,113 @@
+
+<h1><%=t '.filter_label' %></h1>
+
+<%# Filter table %>
+<%= form_tag '/alerts/',{:method=>:get,:name=>'filterForm' } do %>
+  <table>
+  <tr>
+    <th><%=t '.filter_duration' %></th>
+    <th><%=t '.filter_date' %></th>
+    <th><%=t '.filter_include' %></th>
+    <th><%=t '.filter_exclude' %></th>
+    <th><%=t '.filter_limit' %></th>
+    <th><%=t '.layout' %></th>
+  </tr>
+  <tr>
+    <td><%=t '.filter_minimal' %>: <%= text_field_tag :dmin, @alertFilter.dmin,:size => 3 %></td>
+    <td><%=t '.filter_maximal' %>: <%= text_field_tag :dfrom, @alertFilter.dfrom,:size => 16 %></td>
+    <td><%=t '.filter_host' %>: <%= text_field_tag :ihost, @alertFilter.ihost %></td>
+    <td><%=t '.filter_host' %>: <%= text_field_tag :ehost, @alertFilter.ehost %></td>
+    <td><%= text_field_tag :limit, @alertFilter.limit,{:size => 3,:class => @limitStyle }%></td>
+  </tr>
+  <tr>
+    <td><%=t '.filter_maximal' %>: <%= text_field_tag :dmax, @alertFilter.dmax,:size => 3 %></td>
+    <td><%=t '.filter_date_to' %>: <%= text_field_tag :dto, @alertFilter.dto,:size => 16 %></td>
+    <td><%=t '.filter_service' %>: <%= text_field_tag :idesc, @alertFilter.idesc %></td>
+    <td><%=t '.filter_service' %>: <%= text_field_tag :edesc, @alertFilter.edesc %></td>
+    <td><%=t '.filter_status' %>: <%= select_tag "check_status",
+			 options_for_select(Alert::ALERT_STATUS_BY_KEY, @check_status_selected ) %></td>
+    <td><%=t '.filter_byday' %>: <%= check_box_tag :byday, 'on', @alertFilter.byday == 'on' %></td>
+  </tr>
+  </table>
+  <%= submit_tag t('.filter_action') %> | 
+  <%= button_to_function t('.filter_helper_night') ,"lastnight()" %>
+<% end %>
+
+<%# Alert list %>
+<h1><%=t '.listing_alerts' %> (<%=@limitLabel%>/<%=@alert_count%>)</h1>
+
+<%
+#Form tag to update alert status
+#currently always print, even in read only mode
+#TODO find how to remove it on RO mode
+%>
+<%= form_tag '/alerts/link_to_report',{:method=>:post,:name => :myform} do %>
+	<% if logged? %>
+		<%=t '.report' %>: 
+		<%= select_tag "report_id", raw('<option value="0"></option>') +
+			 options_from_collection_for_select(@reportList, :id, :label) %>
+			<%= submit_tag %> | 
+			<%= button_to_function t('.check_all_boxes') ,"checkallfields()" %>
+    <% end %>
+
+<table>
+
+<%# Render head if we are one day view %>
+<%= render "tablehead" unless @alertFilter.byday == 'on' %>
+
+<% #prepare the table background
+#TODO better way in javascript ?
+  bgColorPreviousDay = 0
+  bgColorList = [ 'bg0', 'bg1' ]
+  bgColorCurrent = 1
+%>
+
+<%# Print a row %>
+<% @alerts.each do |alert| 
+   
+  #get the report class element
+  reportClasses = ""
+  alert.report.reporttags.each { |reporttag|
+    reportClasses = reporttag.css_classes+' '+reportClasses unless reporttag.css_classes.nil?
+  } unless alert.report.nil?
+
+  #set bg color
+  if bgColorPreviousDay != alert.date_start.strftime("%d") %>
+    <% if @alertFilter.byday == "on" %>
+      </table><h3><%= alert.date_start.strftime("%v") %></h3><table>
+      <%= render "tablehead" %><%
+    end
+    bgColorCurrent == 0 ? bgColorCurrent = 1 : bgColorCurrent = 0
+    bgColorPreviousDay = alert.date_start.strftime("%d")
+  end
+  %>
+
+  <tr class="bg<%= bgColorCurrent %>">
+    <td><%=h alert.host.name%></td>
+    <td><%=h alert.service.name unless alert.service.nil? %></td>
+    <td><%=h alert.date_start.strftime("%d/%m %H:%M") %></td>
+    <td><%=h alert.date_end.strftime("%d/%m %H:%M") %></td>
+    <td>
+      <img src="/images/check-status-<%=h alert.check_status %>.png" alt="<%=h alert.check_status %>" />
+    </td>
+    <td><%=h alert.service_output %></td>
+    <td class="<%=getDurationCssClass alert.duration %>">
+      <%=h distance_of_time_in_words(0,alert.duration) %>
+    </td>
+    <td>
+    <% if ! alert.report.nil? %>
+      <a class="<%= reportClasses %>" 
+          href="<%= url_for(:controller=>"reports", :action=>"show",:id=>alert.report_id) %>">
+        <%=h alert.report.label %>
+      </a>
+    <% end %>
+    </td>
+    <% if logged? %><td><%= check_box_tag 'alert;'+alert.id.to_s, alert.id %></td><% end %>
+  </tr>
+<% end %>
+</table>
+
+<%# Form end %>
+<% end %>
+
+<p><%= link_to t('.new_alert'), new_alert_path if logged? %></p>

@@ -1,0 +1,17 @@
+<h1><%=t '.title' %></h1>
+<div class="default-form">
+  <fieldset>
+  <legend><%=t '.legend' %></legend>
+  <%= form_for(@hosttag) do |f| %>
+    <label><%=t 'hosttags.name' %>:</label>
+    <%= f.text_field :name %><br />
+    <label><%=t 'hosttags.description' %>:</label>
+    <%= f.text_field :description %><br />
+    <label><%=t 'hosttags.css_classes' %>:</label>
+    <%= f.text_field :css_classes %><br />
+    <%= submit_tag %>
+  <% end %>
+  </fieldset>
+</div>
+
+<%= link_to t('generic.back'), servicetags_path %>

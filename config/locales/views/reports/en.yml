@@ -1,0 +1,26 @@
+en:
+  reports:
+
+    index:
+      title: "Listing reports"
+      new_report: "New report"
+
+    new:
+      title: "Add a report"
+      legend: "Report"
+      selection_priority: "Select priority"
+
+    edit:
+      title: "Editing report"
+      name: "Name"
+
+    show:
+      title: "View report"
+
+    label: "Label"
+    description: "Description"
+    estimated_date: "Estimated date"
+    priority: "Priority"
+    tag: "Tag(s)"
+ 
+    layout_title: "Reports"

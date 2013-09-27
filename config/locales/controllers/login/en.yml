@@ -1,0 +1,6 @@
+en:
+  c_login:
+    user_created0: "User"
+    user_created1: "created"
+    invalid_user_or_password: "Invalid user or password"
+    please_login: "Please you have to login"

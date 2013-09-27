@@ -1,0 +1,15 @@
+<h1><%=t '.title' %></h1>
+<div class="default-form">
+  <fieldset>
+  <legend><%=t '.legend' %></legend>
+  <%= form_for @service do |f| %>
+    <label><%=t 'services.host' %>:</label>
+    <%= f.select :host_id, options_from_collection_for_select(Host.all, :id, :name) %>
+    <label><%=t 'services.name' %>:</label>
+    <%= f.text_field :name %><br />
+    <%= submit_tag %>
+  <% end %>
+  </fieldset>
+</div>
+
+<%= link_to t('generic.back'), services_path %>

@@ -1,0 +1,27 @@
+en:
+  login:
+    add_user:
+      title: "Add a user"
+      enter_user_informations: "Enter user informations"
+      add_user: "Add the user"
+      name: "Name"
+      password: "Password"
+      confirmation: "Confirmation"
+
+    login:
+      title: "Login"
+      please_connect: "Please connect"
+      name: "Name"
+      password: "Password"
+      conn: "connection"
+
+    logout:
+      title: "Logout"
+      logout_msg: "You're now logged out."
+
+    index:
+      title: "Login"
+      connected: "You are connected"
+
+    list_users:
+      title: "Users list"

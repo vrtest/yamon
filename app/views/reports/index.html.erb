@@ -1,0 +1,47 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+  <th><%=t 'reports.label' %></th>
+  <th><%=t 'reports.description' %></th>
+  <th><%=t 'reports.estimated_date' %></th>
+  <th><%=t 'reports.priority' %></th>
+  <th><%=t 'reports.tag' %></th>
+  <% if logged? %>
+    <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+<% @reports.each do |report|
+
+  #get the report class element
+  reportClasses=""
+  report.reporttags.each { |reporttag|
+    reportClasses=reporttag.css_classes+' '+reportClasses unless reporttag.css_classes.nil?
+  } unless report.nil?
+  %>
+
+  <tr>
+    <td><%=h report.label %></td>
+    <td><%=h report.description %></td>
+    <td><%=h report.estimated_date %></td>
+    <td><%=h report.select_priority %></td>
+    <td>
+    <% report.reporttags.each { |reporttag| %>
+        <a class="<%= reportClasses %>" href="<%= url_for(:controller=>"reporttags", :action=>"show",:id=>reporttag.id) %>">
+          <%=h reporttag.name %>
+        </a>
+    <%}%>
+    </td>
+  <% if logged? %>
+    <td><%= link_to t('generic.show'), report %></td>
+    <td><%= link_to t('generic.edit'), edit_report_path(report) %></td>
+    <td><%= link_to t('generic.destroy'), report, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.new_report'), new_report_path if logged? %>

@@ -1,0 +1,17 @@
+en:
+  hosttags:
+    edit:
+      title: "Editing host tag"
+    index:
+      title: "Listing host tags"
+      new_hosttag: "New host tag"
+    new:
+      title: "New host tag"
+      legend: "new host tag"
+    show:
+      title: "Show host tag"
+
+    name: "name"
+    description: "description"
+    css_classes: "css classes"
+    layout_title: "Hosts tags"

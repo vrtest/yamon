@@ -1,0 +1,35 @@
+<%
+#get the service class element
+serviceClasses=""
+service.servicetags.each { |servicetag|
+  serviceClasses=servicetag.css_classes+' '+serviceClasses unless servicetag.css_classes.nil?
+} unless service.nil?
+%>
+
+<tr>
+  <td><a href="<%= url_for(:controller=>"alerts", :action=>"index",:service_id=>service.id)%>"><%=h service.id%></a></td>
+  <td><%=h service.host.name%></td>
+  <td><%=h service.name%></td>
+  <td><%=h service.notification_delay%></td>
+  <td id="taglist_<%=service.id%>">
+  <% service.servicetags.each { |servicetag| %>
+      <a class="<%= serviceClasses %>" href="<%= url_for(:controller=>"servicetags", :action=>"show",:id=>servicetag.id) %>">
+        <%=h servicetag.name %>
+      </a>
+  <%}%>
+  </td>
+<% if logged? %>
+  <td>
+    <% @service_tags.each do |st| %>
+      <%= form_tag '/services/tag',:method=>:post, :remote=>true do %>
+        <%= hidden_field_tag :service_id, service.id %>
+        <%= hidden_field_tag :servicetag_id, st.id %>
+        <%= submit_tag st.name %>
+      <% end %>
+    <% end %>
+  </td>
+  <td><%= link_to t('generic.show'), service %></td>
+  <td><%= link_to t('generic.edit'), edit_service_path(service) %></td>
+  <td><%= link_to t('generic.destroy'), service, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+<% end %>
+</tr>

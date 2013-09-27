@@ -1,0 +1,78 @@
+<h1><%=t '.title' %></h1>
+
+<p>
+	<a href="<%= @linkToPreviousMonth %>">&lt;</a>
+	<%= @dateMin.strftime("%Y-%m") %>
+	<a href="<%= @linkToNextMonth %>">&gt;</a>
+</p>
+
+<p>
+<table>
+<tr>
+	<th><%=t '.service_ok' %></th>
+	<td><%=t '.service_ok_help' %></td>
+</tr>
+<tr>
+	<th><%=t '.service_warn_sum' %></th>
+	<td><%=t '.service_warn_sum_help' %></td>
+</tr>
+<tr>
+	<th><%=t '.service_unknow_sum' %></th>
+	<td><%=t '.service_unknow_sum_help' %></td>
+</tr>
+<tr>
+	<th><%=t '.service_error_sum' %></th>
+	<td><%=t '.service_error_sum_help' %></td>
+</tr>
+<tr>
+	<th><%=t '.service_error_sum_exclude' %></th>
+	<td><%=t '.service_error_sum_exclude_help' %></td>
+</tr>
+<tr>
+	<th><%=t '.service_disponibility' %></th>
+	<td><%=t '.service_disponibility_help' %></td>
+</tr>
+</table>
+</p>
+
+<p>
+<table>
+  <tr>
+    <th><%=t '.service_id' %></th>
+    <th><%=t '.host_name' %></th>
+    <th><%=t '.service_name' %></th>
+    <th><%=t '.service_ok' %></th>
+    <th><%=t '.service_warn_sum' %></th>
+    <th><%=t '.service_unknow_sum' %></th>
+    <th><%=t '.service_error_sum' %></th>
+    <th><%=t '.service_error_sum_exclude' %></th>
+    <th><%=t '.service_disponibility' %></th>
+  </tr>
+
+<% @services.each do |service| %>
+  <tr>
+    <td><a href="<%= url_for(:controller=>"alerts", :action=>"index",:service_id=>service.id)%>"><%=h service.id%></a></td>
+    <td><%=h service.host.name %></td>
+    <td><%=h service.name %></td>
+    <td><%=h service.percent_status_excluded[Alert::ALERT_STATUS_BY_KEY['OK']].round(2) %>%</td>
+    <td><%=h distance_of_time_in_words(0,
+				service.sum_status[Alert::ALERT_STATUS_BY_KEY['WARN']]) %>
+        (<%=h service.percent_status[Alert::ALERT_STATUS_BY_KEY['WARN']].round(2) %>%)
+    </td>
+    <td><%=h distance_of_time_in_words(0,
+				service.sum_status[Alert::ALERT_STATUS_BY_KEY['UNKNOW']]) %>
+        (<%=h service.percent_status[Alert::ALERT_STATUS_BY_KEY['UNKNOW']].round(2) %>%)
+    </td>
+    <td><%=h distance_of_time_in_words(0,
+				service.sum_status[Alert::ALERT_STATUS_BY_KEY['ERROR']]) %>
+        (<%=h service.percent_status[Alert::ALERT_STATUS_BY_KEY['ERROR']].round(2) %>%)
+    </td>
+    <td><%=h distance_of_time_in_words(0,
+				service.sum_status_excluded[Alert::ALERT_STATUS_BY_KEY['ERROR']]) %>
+        (<%=h service.percent_status_excluded[Alert::ALERT_STATUS_BY_KEY['ERROR']].round(2) %>%)
+    </td>
+    <td><%=h service.disponibility.round(2) %>%</td>
+  </tr>
+<% end %>
+</table>
+</p>

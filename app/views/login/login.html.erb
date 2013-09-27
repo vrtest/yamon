@@ -1,0 +1,17 @@
+<h1><%=t '.title' %></h1>
+<div class="default-form">
+  <fieldset>
+    <legend><%=t '.please_connect' %></legend>
+    <%= form_tag do %>
+    <p>
+      <label for="name"><%=t '.name' %>: </label>
+      <%= text_field_tag :name, params[:name] %>
+    </p>
+    <p>
+      <label for="password"><%=t '.password' %>: </label>
+      <%= password_field_tag :password, params[:password] %>
+    </p>
+    <%= submit_tag t('.conn') %>
+    <% end %>
+  </fieldset>
+</div>

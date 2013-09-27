@@ -1,0 +1,35 @@
+<h1><%=t '.title' %></h1>
+
+<h2>
+  <%=t '.label1' %>
+  <%=h distance_of_time_in_words(0,@alertsMinDuration) %>
+  <%=t '.label2' %>
+</h2>
+
+<table>
+  <tr>
+    <th><%=t '.host' %></th>
+    <th><%=t '.service' %></th>
+    <th><%=t '.date_start' %></th>
+    <th><%=t '.date_end' %></th>
+    <th><%=t '.status' %></th>
+    <th><%=t '.output' %></th>
+    <th><%=t '.duration' %></th>
+  </tr>
+
+<% @alerts.each do |alert| %>
+  <tr>
+    <td><%=h alert.host.name%></td>
+    <td><%=h alert.service.name unless alert.service.nil? %></td>
+    <td><%=h alert.date_start.strftime("%d/%m %H:%M") %></td>
+    <td><%=h alert.date_end.strftime("%d/%m %H:%M") %></td>
+    <td>
+      <img src="/images/check-status-<%=h alert.check_status %>.png" alt="<%=h alert.check_status %>" />
+    </td>
+    <td><%=h alert.service_output %></td>
+    <td class="<%=getDurationCssClass alert.duration %>">
+      <%=h distance_of_time_in_words(0,alert.duration) %>
+    </td>
+  </tr>
+<% end %>
+</table>

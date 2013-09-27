@@ -1,0 +1,29 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+  <th><%=t 'servicetags.name' %></th>
+  <th><%=t 'servicetags.description' %></th>
+  <th><%=t 'servicetags.css_classes' %></th>
+  <% if logged? %>
+  <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+<% @servicetags.each do |servicetag| %>
+  <tr>
+    <td><%=h servicetag.name %></td>
+    <td><%=h servicetag.description %></td>
+    <td class="<%= servicetag.css_classes %>"><%=h servicetag.css_classes %></td>
+  <% if logged? %>
+    <td><%= link_to t('generic.show'), servicetag %></td>
+    <td><%= link_to t('generic.edit'), edit_servicetag_path(servicetag) %></td>
+    <td><%= link_to t('generic.destroy'), servicetag, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.new'), new_servicetag_path if logged? %>

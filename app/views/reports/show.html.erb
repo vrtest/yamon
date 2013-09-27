@@ -1,0 +1,30 @@
+<%
+  #get the report class element
+  reportClasses=""
+  @report.reporttags.each { |reporttag|
+    reportClasses=reporttag.css_classes+' '+reportClasses unless reporttag.css_classes.nil?
+  }
+  %>
+<h1><%=t '.title' %></h1>
+<table>
+  <tr>
+  <% for column in Report.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th></th>
+  </tr>
+  <tr>
+  <% for column in Report.content_columns %>
+    <td><%=h @report.send(column.name) %></td>
+  <% end %>
+    <td>
+    <% @report.reporttags.each { |reporttag| %>
+        <a class="<%= reportClasses %>" href="<%= url_for(:controller=>"reporttags", :action=>"show",:id=>reporttag.id) %>">
+          <%=h reporttag.name %>
+        </a>
+    <%}%>
+  </tr>
+</table>
+
+<%= link_to t('generic.edit'), edit_report_path(@report) %> |
+<%= link_to t('generic.back'), reports_path %>

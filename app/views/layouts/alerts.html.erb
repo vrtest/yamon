@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%=t 'alerts.index.title' %>: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'default','jsDatePick' %>
+</head>
+<body>
+<%= render(:partial => "shared/menu") %>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield %>
+
+<%= javascript_include_tag "jsDatePick.full.1.1" %>
+<%= javascript_include_tag "alerts.js" %>
+
+</body>
+</html>

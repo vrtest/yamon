@@ -1,0 +1,17 @@
+en:
+  hosts:
+    index:
+      title: "Listing hosts"
+      name: "Name"
+      tag: "Tag(s)"
+    edit:
+      title: "Editing host"
+      title_tag: "Tag(s)"
+      form_add: "Add:"
+      name: "Name"
+    new:
+      title: "New host"
+    show:
+      name: "Name"
+
+    layout_title: "Hosts"

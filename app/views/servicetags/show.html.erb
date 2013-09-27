@@ -1,0 +1,17 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+  <% for column in Servicetag.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  <tr>
+  <% for column in Servicetag.content_columns %>
+    <td><%=h @servicetag.send(column.name) %></td>
+  <% end %>
+  </tr>
+</table>
+
+<%= link_to t('generic.edit'), edit_servicetag_path(@servicetag) %> |
+<%= link_to t('generic.back'), servicetags_path %>

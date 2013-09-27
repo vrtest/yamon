@@ -1,0 +1,11 @@
+<h1><%=t 'alerts.edit_alert'%></h1>
+
+<%= form_for(@alert) do |f| %>
+
+  <p>
+    <%= f.submit t('alerts.update') %>
+  </p>
+<% end %>
+
+<%= link_to t('generic.show'), @alert %> |
+<%= link_to t('generic.back'), alerts_path %>

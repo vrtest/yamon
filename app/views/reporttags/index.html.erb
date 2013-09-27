@@ -1,0 +1,29 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+  <th><%=t 'reporttags.name' %></th>
+  <th><%=t 'reporttags.description' %></th>
+  <th><%=t 'reporttags.css_classes' %></th>
+  <% if logged? %>
+  <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+<% @reporttags.each do |reporttag| %>
+  <tr>
+    <td><%=h reporttag.name %></td>
+    <td><%=h reporttag.description %></td>
+    <td class="<%= reporttag.css_classes %>"><%=h reporttag.css_classes %></td>
+  <% if logged? %>
+    <td><%= link_to t('generic.show'), reporttag %></td>
+    <td><%= link_to t('generic.edit'), edit_reporttag_path(reporttag) %></td>
+    <td><%= link_to t('generic.destroy'), reporttag, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.new'), new_reporttag_path if logged? %>

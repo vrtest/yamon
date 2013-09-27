@@ -1,0 +1,29 @@
+<h1><%=t '.title' %></h1>
+
+<table>
+  <tr>
+    <th><%=t 'hosttags.name' %></th>
+    <th><%=t 'hosttags.description' %></th>
+    <th><%=t 'hosttags.css_classes' %></th>
+  <% if logged? %>
+    <th></th><th></th><th></th>
+  <% end %>
+  </tr>
+
+<% @hosttags.each do |hosttag| %>
+  <tr>
+    <td><%=h hosttag.name %></td>
+    <td><%=h hosttag.description %></td>
+    <td class="<%= hosttag.css_classes %>"><%=h hosttag.css_classes %></td>
+  <% if logged? %>
+    <td><%= link_to t('generic.show'), hosttag %></td>
+    <td><%= link_to t('generic.edit'), edit_hosttag_path(hosttag) %></td>
+    <td><%= link_to t('generic.destroy'), hosttag, :confirm => t('generic.destroy_confirm'), :method => :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.new_hosttag'), new_hosttag_path if logged? %>

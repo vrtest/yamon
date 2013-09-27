@@ -1,0 +1,21 @@
+en:
+  servicetags:
+
+    index:
+      title: "Listing service tags"
+      new: "New service tag"
+
+    edit:
+      title: "Editing service tag"
+
+    new:
+      title: "Add a report tag"
+      legend: "Report tag"
+
+    show:
+      title: "Show a service tag"
+
+    layout_title: "Services tags"
+    name: "Name"
+    description: "Description"
+    css_classes: "Style"

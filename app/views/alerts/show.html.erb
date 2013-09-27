@@ -1,0 +1,18 @@
+<h1><%=t 'alerts.alert' %></h1>
+
+<table>
+  <tr>
+  <% for column in Alert.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  <tr>
+  <% for column in Alert.content_columns %>
+    <td><%=h @alert.send(column.name) %></td>
+  <% end %>
+  </tr>
+</table>
+
+<hr />
+<%= link_to t('generic.edit'), edit_alert_path(@alert) %> |
+<%= link_to t('generic.back'), alerts_path %>

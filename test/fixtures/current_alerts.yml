@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hostname: MyString
+  description: MyString
+  check_status: 1
+  check_date: 2010-05-04 22:30:50
+  service_output: MyString
+  service_perfdata: MyString
+  created_at: 2009-12-25 01:15:00
+  updated_at: 2009-12-25 01:15:00
+
+two:
+  hostname: MyString
+  description: MyString
+  check_status: 1
+  check_date: 2010-05-04 22:30:50
+  service_output: MyString
+  service_perfdata: MyString
+  created_at: 2009-12-25 01:15:00
+  updated_at: 2009-12-25 01:15:00

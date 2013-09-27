@@ -1,0 +1,20 @@
+<h1><%=t '.title' %></h1>
+
+<p>
+  <b><%=t 'hosttags.name' %>:</b>
+  <%=h @hosttag.name %>
+</p>
+
+<p>
+  <b><%=t 'hosttags.description' %>:</b>
+  <%=h @hosttag.description %>
+</p>
+
+<p>
+  <b><%=t 'hosttags.css_classes' %>:</b>
+  <%=h @hosttag.css_classes %>
+</p>
+
+
+<%= link_to t('generic.edit'), edit_hosttag_path(@hosttag) %> |
+<%= link_to t('generic.back'), hosttags_path %>

@@ -1,0 +1,27 @@
+en:
+  services:
+
+    index:
+      title: "Listing services"
+      new: "New service"
+      add_tags: "Add tags"
+
+    edit:
+      title: "Editing service"
+
+    new:
+      title: "Add a service"
+      legend: "Service"
+      description: "Description"
+
+    show:
+      title: "Show a service"
+
+    layout_title: "Services"
+    id: "Id"
+    host: "Host"
+    name: "Name"
+    tag: "Tag(s)"
+    alerts: "Alerts"
+    description: "Description"
+

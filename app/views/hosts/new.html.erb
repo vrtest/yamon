@@ -1,0 +1,14 @@
+<h1><%=t '.title'%></h1>
+
+<%= form_for(@host) do |f| %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit t('generic.create') %>
+  </p>
+<% end %>
+
+<%= link_to t('generic.back'), hosts_path %>

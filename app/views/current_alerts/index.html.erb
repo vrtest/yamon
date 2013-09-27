@@ -1,0 +1,38 @@
+<h1>currentAlerts</h1>
+
+<% if logged? %>
+  <td><%= link_to "delete > 3h", :controller => "current_alerts", :action => "delete_3h" %></td>
+<% end %>
+
+<% @currentAlerts.each do |label, ca|%>
+
+<h2>Type <%= label %></h1>
+
+
+<table>
+  <tr>
+    <th><%=t '.host' %></th>
+    <th><%=t '.service' %></th>
+    <th><%=t '.date_start' %></th>
+    <th><%=t '.status' %></th>
+    <th><%=t '.output' %></th>
+    <th><%=t '.duration' %></th>
+    <% if logged? %><th>delete</th><% end %>
+  </tr>
+
+<% ca.each do |alert| %>
+  <tr>
+    <td><%=h alert.hostname%></td>
+    <td><%=h alert.description %></td>
+    <td><%=h alert.check_date_human %></td>
+    <td>
+      <img src="/images/check-status-<%=h alert.check_status %>.png" alt="<%=h alert.check_status %>" />
+    </td>
+    <td><%=h alert.service_output %></td>
+    <td></td>
+    <% if logged? %><td><%= link_to t('generic.destroy'), alert, :remote=>true,:class=>'delete_alert',:method => :delete %></td><% end %>
+  </tr>
+<% end %>
+</table>
+
+<% end %>

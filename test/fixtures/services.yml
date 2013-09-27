@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  host_id: 1
+  name: google homepage
+
+two:
+  id: 2
+  host_id: 2
+  name: bing homepage
+
+three:
+  id: 3
+  host_id: 3
+  name: yahoo homepage

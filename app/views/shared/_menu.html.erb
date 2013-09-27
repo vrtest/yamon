@@ -1,0 +1,20 @@
+<div id="menu">
+  <a href="/home"><%=t 'menu.home' %></a> -
+  <a href="/current_alerts"><%=t 'menu.current_alerts' %></a> -
+  <a href="/alerts"><%=t 'menu.alerts' %></a> -
+  <a href="/hosts"><%=t 'menu.hosts' %></a> -
+  <a href="/services"><%=t 'menu.services' %></a> -
+  <a href="/reports"><%=t 'menu.reports' %></a>
+|
+  <a href="/hosttags"><%=t 'menu.hosttags' %></a>
+  <a href="/reporttags"><%=t 'menu.reporttags' %></a> -
+  <a href="/servicetags"><%=t 'menu.servicetags' %></a>
+|
+  <a href="/dispo_stats"><%=t 'menu.dispo_stats' %></a>
+|
+<% if session[:user_id] %>
+  <a href="/login/logout"><%=t 'menu.logout' %></a>
+<% else %>
+  <a href="/login/login"><%=t 'menu.login' %></a>
+<% end %>
+</div>

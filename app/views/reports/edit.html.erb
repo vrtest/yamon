@@ -1,0 +1,48 @@
+<h1><%=t '.title' %></h1>
+
+<%= form_for @report do |f| %>
+  <label><%=t 'reports.label' %>:</label>
+  <%= f.text_field :label %><br />
+  <label><%=t 'reports.description' %>:</label>
+  <%= f.text_field :description %><br />
+  <label><%=t 'reports.estimated_date' %>:</label>
+  <%= f.text_field :estimated_date %><br />
+  <label>Select priority:</label>
+  <%= f.text_field :select_priority %><br />
+  <%= submit_tag %>
+<% end %>
+
+<h2><%=t 'reports.tag' %></h2>
+
+<%= form_tag '/reports/tag',:method=>:post do %>
+  <%= hidden_field_tag :report_id, @report.id %>
+  <label><%=t 'generic.add' %>:</label>
+  <%= select_tag "reporttag_id", options_from_collection_for_select(Reporttag.all, :id, :name) %>
+  <%= submit_tag t('generic.add') %>
+<% end %>
+
+<table>
+  <tr>
+    <th><%=t '.name' %></th>
+  </tr>
+  <% @report.reporttags.each { |reporttag| %>
+  <tr>
+    <td>
+      <a href="<%= url_for(:controller=>"reporttags", :action=>"show",:id=>reporttag.id) %>">
+        <%=h reporttag.name %>
+      </a>
+    </td>
+    <td>
+      <%= form_tag '/reports/untag',:method=>:post do %>
+      <%= hidden_field_tag :report_id, @report.id %>
+      <%= hidden_field_tag :reporttag_id, reporttag.id %>
+      <%= submit_tag t('generic.remove') %>
+    <% end %>
+    </td>
+  </tr>
+  <%}%>
+</table>
+
+<hr />
+<%= link_to t('generic.show'), @report %> |
+<%= link_to t('generic.back'), reports_path %>

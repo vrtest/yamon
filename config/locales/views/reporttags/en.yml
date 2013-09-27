@@ -1,0 +1,21 @@
+en:
+  reporttags:
+
+    index:
+      title: "Listing report tags"
+      new: "New report tag"
+
+    new:
+      title: "Add a report tag"
+      legend: "Report tag"
+
+    edit:
+      title: "Editing report tag"
+
+    show:
+      title: "Show report tag"
+
+    layout_title: "Reports tags"
+    name: "name"
+    description: "description"
+    css_classes: "Style"
