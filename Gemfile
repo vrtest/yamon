@@ -10,6 +10,10 @@ gem 'dotiw'
 gem 'mysql', '2.8.1'
 gem 'jquery-rails'
 
+group :development, :test do
+	    gem 'railroady'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

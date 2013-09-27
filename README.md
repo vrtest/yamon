@@ -47,8 +47,11 @@ The user table is for edit mode where you need to be logged.
 
 ### To generate the db schema
 
-thanks to http://jacqueschirag.wordpress.com/2007/08/09/visualize-your-rails-database-schema-for-free-on-windows/
- $ railroad -a -i -M | dot -Tpng > doc/db.png
+```
+rake diagram:all
+```
+
+see https://github.com/preston/railroady
 
  To add a user
 --------------
