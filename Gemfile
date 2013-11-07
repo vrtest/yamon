@@ -7,7 +7,7 @@ gem 'rails', '4.0'
 
 gem 'sqlite3'
 gem 'dotiw'
-gem 'mysql', '2.8.1'
+#gem 'mysql', '2.8.1'
 gem 'jquery-rails'
 
 group :development, :test do

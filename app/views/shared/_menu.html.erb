@@ -1,20 +1,45 @@
-<div id="menu">
-  <a href="/home"><%=t 'menu.home' %></a> -
-  <a href="/current_alerts"><%=t 'menu.current_alerts' %></a> -
-  <a href="/alerts"><%=t 'menu.alerts' %></a> -
-  <a href="/hosts"><%=t 'menu.hosts' %></a> -
-  <a href="/services"><%=t 'menu.services' %></a> -
-  <a href="/reports"><%=t 'menu.reports' %></a>
-|
-  <a href="/hosttags"><%=t 'menu.hosttags' %></a>
-  <a href="/reporttags"><%=t 'menu.reporttags' %></a> -
-  <a href="/servicetags"><%=t 'menu.servicetags' %></a>
-|
-  <a href="/dispo_stats"><%=t 'menu.dispo_stats' %></a>
-|
-<% if session[:user_id] %>
-  <a href="/login/logout"><%=t 'menu.logout' %></a>
-<% else %>
-  <a href="/login/login"><%=t 'menu.login' %></a>
-<% end %>
-</div>
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="navbar-header"> 
+  </div>
+  <div class="collapse navbar-collapse" id="yamon-navbar">
+    <ul class="nav navbar-nav">
+      <li class="<%= is_menu_active? "home" %>">
+        <a href="/home"><%=t 'menu.home' %></a>
+      </li>
+      <li class="<%= is_menu_active? "current_alerts" %>">
+        <a href="/current_alerts"><%=t 'menu.current_alerts' %></a>
+      </li>
+      <li class="<%= is_menu_active? "alerts" %>">
+        <a href="/alerts"><%=t 'menu.alerts' %></a>
+      </li>
+      <li class="<%= is_menu_active? "hosts" %>">
+        <a href="/hosts"><%=t 'menu.hosts' %></a>
+      </li>
+      <li class="<%= is_menu_active? "services" %>">
+        <a href="/services"><%=t 'menu.services' %></a>
+      </li>
+      <li class="<%= is_menu_active? "reports" %>">
+        <a href="/reports"><%=t 'menu.reports' %></a>
+      </li>
+      <li class="<%= is_menu_active? "hosttags" %>">
+        <a href="/hosttags"><%=t 'menu.hosttags' %></a>
+      </li>
+      <li class="<%= is_menu_active? "reporttags" %>">
+        <a href="/reporttags"><%=t 'menu.reporttags' %></a>
+      </li>
+      <li class="<%= is_menu_active? "servicetags" %>">
+        <a href="/servicetags"><%=t 'menu.servicetags' %></a>
+      </li>
+      <li class="<%= is_menu_active? "dispo_stats" %>">
+        <a href="/dispo_stats"><%=t 'menu.dispo_stats' %></a>
+     </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if session[:user_id] %>
+      <li><a href="/login/logout"><%=t 'menu.logout' %></a></li>
+      <% else %>
+      <li><a href="/login/login"><%=t 'menu.login' %></a></li>
+      <% end %>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>

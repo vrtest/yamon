@@ -2,7 +2,13 @@
 module ApplicationHelper
 
   def logged?
+
     session[:user_id] != nil
+  end
+
+  def is_menu_active? menu
+
+    controller.controller_name == menu ? "active" : ""
   end
 
 end

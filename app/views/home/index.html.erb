@@ -6,7 +6,8 @@
   <%=t '.label2' %>
 </h2>
 
-<table>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
   <tr>
     <th><%=t '.host' %></th>
     <th><%=t '.service' %></th>
@@ -16,8 +17,10 @@
     <th><%=t '.output' %></th>
     <th><%=t '.duration' %></th>
   </tr>
+  </thead>
 
 <% @alerts.each do |alert| %>
+  <tbody>
   <tr>
     <td><%=h alert.host.name%></td>
     <td><%=h alert.service.name unless alert.service.nil? %></td>
@@ -31,5 +34,6 @@
       <%=h distance_of_time_in_words(0,alert.duration) %>
     </td>
   </tr>
+  </tbody>
 <% end %>
 </table>
